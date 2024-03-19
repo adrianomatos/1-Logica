@@ -4,22 +4,25 @@
 // let paragrafo = document.querySelector("p");
 // paragrafo.innerHTML = "Informe um número entre 1 e 10:";
 
+let dificuldade = prompt(`Com quantos números vc quer jogar?`);
+
 let listaNumerosSorteados = [];
-let numeroLimite = 10;
+let numeroLimite = dificuldade;
 let numeroSecreto = gerarNumeroAleatorio();
 let quantTentativas = 0;
 
 function exibirTextoNaTela(tag, msg) {
-  let campo = document.querySelector(tag);
+	let campo = document.querySelector(tag);
   campo.innerHTML = msg;
   responsiveVoice.speak(msg, "Brazilian Portuguese Female", { rate: 1.2 });
 }
 
 function exibirMsgInicial() {
-  exibirTextoNaTela("h1", "Jogo do número secreto!");
-  exibirTextoNaTela("p", "Informe um número entre 1 e 3:");
+	exibirTextoNaTela("h1", "Jogo do número secreto!");
+  exibirTextoNaTela("p", `Informe um número entre 1 e ${numeroLimite}:`);
 }
 exibirMsgInicial();
+
 
 function gerarNumeroAleatorio() {
   // verifica se a lista já está cheia
@@ -75,9 +78,9 @@ function verificarChute() {
     exibirTextoNaTela("h1", `Você errou!`);
     limparCampoForm();
     if (numeroSecreto > chute) {
-      exibirTextoNaTela("p", `O número secreto é Maior`);
+      exibirTextoNaTela("p", `O número secreto é Maior que seu palpite`);
     } else {
-      exibirTextoNaTela("p", `O número secreto é Maior`);
+      exibirTextoNaTela("p", `O número secreto é Menor que seu palpite`);
     }
   }
 }
